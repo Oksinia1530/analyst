@@ -1,4 +1,4 @@
-#??????2: ????? ????? ???? ???????????? ?????
+#Task2:
 
 x=int(input("Enter a three-digit number"))
 if x<100 or x>999:
@@ -11,7 +11,7 @@ else:
 #   x%10                    ?????? ?????
 
 """
-#?????? 4:
+#Task 4:
 
 x=int(input("Write how many cranes the children made"))
 if x%6>0:
@@ -20,7 +20,7 @@ else:
     print("Petya did",int(x/6), "and Seryozha did",int(x/6), ", and Katya did ",int(x/3*2))
 """    
 """
-#?????? 6:
+#Task 6:
 
 x=(input("input N bilet"))
 # print(len(x))
@@ -45,7 +45,7 @@ if len(x)==6 and str.isdigit(x)==True:
 else: print ("error")
 """
 """
-#?????? 8:
+#Task 8:
 
 n=int(input("input n"))
 m=int(input("input m"))
