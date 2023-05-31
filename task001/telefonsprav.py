@@ -12,7 +12,7 @@ def work_with_phonebook():
     choice = show_menu()
     phone_book = read_txt('phon.txt')
     
-    while (choice != 6):
+    while (choice != 8):
         if choice == 1:
             print_result(phone_book)
         elif choice == 2:
@@ -28,6 +28,23 @@ def work_with_phonebook():
         elif choice == 5:
             file_name = get_file_name()
             write_txt(file_name, phone_book)
+        elif choice == 6:
+            do_change_description = change_description()
+            for index, dictionary in enumerate(phone_book):
+                if dictionary.get("Фамилия") == do_change_description:
+                    new_description = input("Введите новое описание для абонента: ")
+                    phone_book[index]["Описание"]=new_description
+                    break
+        elif choice ==7:
+            do_del_record = del_record()      
+            for index, dictionary in enumerate(phone_book):
+                if dictionary.get("Фамилия") == do_del_record:
+                    phone_book.pop(index)
+                    break
+                else:
+                    print('Такого пользователя нет в справочнике')
+            write_txt('phon.txt', phone_book)
+            print(do_del_record, phone_book)
         choice = show_menu()
     
 def show_menu() -> int:
@@ -37,7 +54,9 @@ def show_menu() -> int:
           "3. Найти абонента по номеру телефона\n"
           "4. Добавить абонента в справочник\n"
           "5. Сохранить справочник в текстовом формате\n"
-          "6. Закончить работу")
+          "6. Внести изменения в справочник\n"
+          "7. Удалить запись\n"
+          "8. Закончить работу")
     choice = int(input())
     return choice
 
@@ -49,7 +68,6 @@ def read_txt(filename: str) -> list:
             record = dict(zip(fields, line.strip().split(',')))
             data.append(record)
     return data
-
 
 def write_txt(filename: str, data: list):
     with open(filename, 'w', encoding='utf-8') as fout:
@@ -81,7 +99,7 @@ def add_user(data: list, user_data: str):
     record = dict(zip(fields, user_data.split(',')))
     data.append(record)
 
-def get_search_name():
+def get_search_name():                                      
     return input("Введите фамилию: ")
 
 def get_search_number():
@@ -95,8 +113,11 @@ def get_new_user():
 def get_file_name():
     return input("Введите название файла: ")
 
-# def del_user:                        #Удаляем строку
+def change_description():
+    return input('Введите Фамилию абонента, у которого меняем описание: ')
 
+def del_record():
+    return input('Введите Фамилию удаляемого абонента: ')
 
 def print_result(phone_book):
     print(phone_book)
